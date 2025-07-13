@@ -1,3 +1,4 @@
+from script.module import *
 '''
 Handling world and world elements.
 '''

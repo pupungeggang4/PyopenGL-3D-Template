@@ -1,3 +1,4 @@
+from script.module import *
 '''
 Handling elements in world and shapes.
 '''
