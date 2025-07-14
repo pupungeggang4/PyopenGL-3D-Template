@@ -14,8 +14,6 @@ class Game():
         self.state = ''
         self.menu = False
 
-        self.gl_var = {}
-
         # Initializing GLFW
         glfw.init()
         glfw.window_hint(glfw.CONTEXT_VERSION_MAJOR, 4)
