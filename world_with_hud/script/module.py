@@ -1,7 +1,8 @@
 import os, sys, ctypes, json
 import numpy as np, pygame, glfw
+import OpenGL
 from OpenGL.GL import *
-from glfw.GLFW import *
+#from glfw.GLFW import *
 
 from script.asset import *
 from script.ui import *
