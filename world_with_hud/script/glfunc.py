@@ -31,10 +31,13 @@ class GLFunc():
         game.location['a_texcoord'] = glGetAttribLocation(game.program, 'a_texcoord')
         game.location['u_mode_v'] = glGetUniformLocation(game.program, 'u_mode_v')
         game.location['u_mode_f'] = glGetUniformLocation(game.program, 'u_mode_f')
+        game.location['u_m_pos'] = glGetUniformLocation(game.program, 'u_m_pos')
+        game.location['u_m_size'] = glGetUniformLocation(game.program, 'u_m_size')
+        game.location['u_m_rot'] = glGetUniformLocation(game.program, 'u_m_rot')
+        game.location['u_c_proj'] = glGetUniformLocation(game.program, 'u_c_proj')
+        game.location['u_c_pos'] = glGetUniformLocation(game.program, 'u_c_pos')
+        game.location['u_c_rot'] = glGetUniformLocation(game.program, 'u_c_rot')
         game.location['u_color'] = glGetUniformLocation(game.program, 'u_color')
-        #game.location['u_color'] = glGetUniformLocation(game.program, 'u_color')
-        #game.location['u_color'] = glGetUniformLocation(game.program, 'u_color')
-        #game.location['u_color'] = glGetUniformLocation(game.program, 'u_color')
 
         # Vaos and buffers.
         game.vao = 1

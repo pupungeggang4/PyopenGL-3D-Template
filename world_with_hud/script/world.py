@@ -9,8 +9,16 @@ class PlayerWorld():
 
 # World.
 class World():
-    pass
+    def __init__(self):
+        self.thing = []
+        self.camera = Camera3()
 
 # Camera in world.
-class Camera():
-    pass
+class Camera3():
+    def __init__(self):
+        self.pos = Vector3(0, 0, 0)
+        self.rot = Vector3(0, 0, 0)
+        self.near = 0.1
+        self.far = 10.0
+        self.fov = 60.0 * 3.14 / 180.0
+        self.asp = 16.0 / 9.0

@@ -29,6 +29,7 @@ class Vector3():
 # 3D cuboid object
 class Cuboid3():
     # Constructor
-    def __init__(self, x, y, z, w, h, d):
+    def __init__(self, x, y, z, sz, sy, sz, rx, ry, rz):
         self.pos = Vector3(x, y, z)
-        self.size = Vector3(w, h, d)
+        self.size = Vector3(sx, sy, sz)
+        self.rot = Vector3(rx, ry, rz)

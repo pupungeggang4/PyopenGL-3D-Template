@@ -11,6 +11,10 @@ class Game():
         for k in self.key_binding:
             self.key_pressed[k] = False
 
+        # World
+        self.world = World()
+
+        # Scene and state variable
         self.scene = 'scene'
         self.state = ''
         self.menu = False
