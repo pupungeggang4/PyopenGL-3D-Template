@@ -12,10 +12,10 @@ in vec2 a_texcoord;
 out vec2 p_texcoord;
 
 void main() {
-    if (u_move_v == 0) {
+    if (u_mode_v == 0) {
         gl_Position = a_position;
     } else {
         gl_Position = a_position;
     }
-    p_texcoord = a_texcoord
+    p_texcoord = a_texcoord;
 }

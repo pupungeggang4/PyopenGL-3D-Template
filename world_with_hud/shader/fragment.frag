@@ -4,6 +4,7 @@ precision highp float;
 uniform sampler2D u_texture;
 uniform int u_mode_f;
 uniform vec3 u_color;
+in vec2 p_texcoord;
 out vec4 o_color;
 
 void main() {

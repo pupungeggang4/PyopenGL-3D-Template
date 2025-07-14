@@ -1,4 +1,5 @@
 from script.module import *
+import script.scene as scene
 
 class Game():
     def __init__(self):
@@ -10,7 +11,7 @@ class Game():
         for k in self.key_binding:
             self.key_pressed[k] = False
 
-        self.scene = 'title'
+        self.scene = 'scene'
         self.state = ''
         self.menu = False
 
@@ -35,6 +36,7 @@ class Game():
         glfw.set_key_callback(self.window, self.cb_key)
 
         GLFunc.gl_init(self)
+        print(self.location)
         self.pg_init()
 
     # A function which initializes Pygame
@@ -53,6 +55,8 @@ class Game():
     def run(self):
         while not glfw.window_should_close(self.window):
             self.clock.tick(self.fps)
+            if self.scene == 'scene':
+                scene.loop(self)
             glfw.swap_buffers(self.window)
             glfw.poll_events()
 
