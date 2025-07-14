@@ -31,12 +31,15 @@ class Game():
 
         if sys.platform != 'darwin':
             glfw.set_window_pos(self.window, int(self.video_mode.size.width / 2 - 1280 * self.scale[0] / 2), int(self.video_mode.size.height / 2.0 - 720 * self.scale[1] / 2))
+
         glfw.set_window_close_callback(self.window, self.cb_window_close)
         glfw.set_mouse_button_callback(self.window, self.cb_mouse_button)
         glfw.set_key_callback(self.window, self.cb_key)
 
+        # Initializing OpenGL (Defined in script/glfunc.py)
         GLFunc.gl_init(self)
-        print(self.location)
+
+        # Initializing pygame (Defined below.)
         self.pg_init()
 
     # A function which initializes Pygame
