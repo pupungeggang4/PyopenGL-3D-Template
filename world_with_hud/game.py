@@ -23,18 +23,20 @@ class Game():
         glfw.window_hint(glfw.OPENGL_PROFILE, glfw.OPENGL_CORE_PROFILE)
         glfw.window_hint(glfw.OPENGL_FORWARD_COMPAT, True)
         glfw.window_hint(glfw.SCALE_TO_MONITOR, True)
-        self.window = glfw.create_window(1280, 720, 'buffer test', None, None)
+        glfw.window_hint(glfw.RESIZABLE, False)
+        self.window = glfw.create_window(1280, 720, 'world with hud template', None, None)
         self.context = glfw.make_context_current(self.window)
         self.monitor = glfw.get_primary_monitor()
         self.video_mode = glfw.get_video_mode(self.monitor)
         self.scale = glfw.get_window_content_scale(self.window)
 
-        glfw.set_window_pos(self.window, int(self.video_mode.size.width / 2 - 1280 * self.scale[0] / 2), int(self.video_mode.size.height / 2.0 - 720 * self.scale[1] / 2))
+        if sys.platform != 'darwin':
+            glfw.set_window_pos(self.window, int(self.video_mode.size.width / 2 - 1280 * self.scale[0] / 2), int(self.video_mode.size.height / 2.0 - 720 * self.scale[1] / 2))
         glfw.set_window_close_callback(self.window, self.cb_window_close)
         glfw.set_mouse_button_callback(self.window, self.cb_mouse_button)
         glfw.set_key_callback(self.window, self.cb_key)
 
-        GLFunc.gl_init(self.gl_var)
+        GLFunc.gl_init(self)
         self.pg_init()
 
     # A function which initializes Pygame
