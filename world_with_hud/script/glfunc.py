@@ -44,15 +44,45 @@ class GLFunc():
         glGenVertexArrays(game.vao)
         glBindVertexArray(game.vao)
         game.buffer = {
-            'triangle': 1, 'triangle_index': 2, 'hud': 3, 'hud_index': 4, 'cuboid': 5, 'cuboid': 6
+            'triangle': 1, 'triangle_index': 2, 'hud': 3, 'hud_index': 4, 'cuboid': 5, 'cuboid_index': 6
         }
         glGenBuffers(1, game.buffer['triangle'])
         glGenBuffers(1, game.buffer['triangle_index'])
+        glGenBuffers(1, game.buffer['hud'])
+        glGenBuffers(1, game.buffer['hud_index'])
+        glGenBuffers(1, game.buffer['cuboid'])
+        glGenBuffers(1, game.buffer['cuboid_index'])
 
         glBindBuffer(GL_ARRAY_BUFFER, game.buffer['triangle'])
         glBufferData(GL_ARRAY_BUFFER, np.array([0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0], dtype = np.float32), GL_STATIC_DRAW)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['triangle_index'])
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array([0, 1, 2], dtype = np.int16), GL_STATIC_DRAW)
+        glBindBuffer(GL_ARRAY_BUFFER, game.buffer['hud'])
+        glBufferData(GL_ARRAY_BUFFER, np.array([
+            -1.0, -1.0, 0.0, 1.0,
+            1.0, -1.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 0.0,
+            -1.0, 1.0, 0.0, 0.0
+        ], dtype = np.float32), GL_STATIC_DRAW)
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['hud_index'])
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array(
+            1, 2, 0, 0, 2, 3
+        ), dtype = np.int16)
+        glBindBuffer(GL_ARRAY_BUFFER, game.buffer['cuboid'])
+        glBufferData(GL_ARRAY_BUFFER, np.array([
+            -0.5, -0.5, -0.5, 1.0, 1.0, 0.5, -0.5, -0.5, 0.0, 1.0, 0.5, 0.5, -0.5, 0.0, 0.0, -0.5, 0.5, -0.5, 1.0, 0.0,
+            -0.5, -0.5, 0.5, 0.0, 1.0, 0.5, -0.5, 0.5, 1.0, 1.0, 0.5, 0.5, 0.5, 1.0, 0.0, -0.5, 0.5, 0.5, 0.0, 0.0,
+            -0.5, -0.5, 0.5, 1.0, 1.0, -0.5, -0.5, -0.5, 0.0, 1.0, -0.5, 0.5, -0.5, 0.0, 0.0, -0.5, 0.5, 0.5, 1.0, 0.0,
+            0.5, -0.5, 0.5, 0.0, 1.0, 0.5, -0.5, -0.5, 1.0, 1.0, 0.5, 0.5, -0.5, 1.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0,
+            -0.5, -0.5, 0.5, 1.0, 1.0, 0.5, -0.5, 0.5, 0.0, 1.0, 0.5, -0.5, -0.5, 0.0, 0.0, -0.5, -0.5, -0.5, 1.0, 0.0,
+            -0.5, 0.5, 0.5, 0.0, 1.0, 0.5, 0.5, 0.5, 1.0, 1.0, 0.5, 0.5, -0.5, 1.0, 0.0, -0.5, 0.5, -0.5, 0.0, 0.0,
+        ], dtype = np.float32))
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['cuboid_index'])
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array([
+            3, 2, 0, 0, 2, 1, 5, 6, 4, 4, 6, 7,
+            11, 10, 8, 8, 10, 9, 13, 14, 12, 12, 14, 15,
+            19, 18, 16, 16, 18, 17, 21, 22, 20, 20, 22, 23
+        ], dtype = np.int16))
 
         # Textures
         game.texture = 1
