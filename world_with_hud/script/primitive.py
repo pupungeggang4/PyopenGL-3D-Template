@@ -1,4 +1,4 @@
-from script.module import *
+import module as m
 '''
 Handling elements in world and shapes.
 '''

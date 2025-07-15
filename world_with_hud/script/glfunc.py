@@ -1,4 +1,16 @@
-from script.module import *
+import os, sys, ctypes, json
+import numpy as np, pygame, glfw
+from OpenGL.GL import *
+
+from asset import *
+from ui import *
+from primitive import *
+from func import *
+from player import *
+from world import *
+from rgl import *
+from rhud import *
+from glfunc import *
 
 class GLFunc():
     @staticmethod
@@ -65,9 +77,9 @@ class GLFunc():
             -1.0, 1.0, 0.0, 0.0
         ], dtype = np.float32), GL_STATIC_DRAW)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['hud_index'])
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array(
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array([
             1, 2, 0, 0, 2, 3
-        ), dtype = np.int16)
+        ], dtype = np.int16), GL_STATIC_DRAW)
         glBindBuffer(GL_ARRAY_BUFFER, game.buffer['cuboid'])
         glBufferData(GL_ARRAY_BUFFER, np.array([
             -0.5, -0.5, -0.5, 1.0, 1.0, 0.5, -0.5, -0.5, 0.0, 1.0, 0.5, 0.5, -0.5, 0.0, 0.0, -0.5, 0.5, -0.5, 1.0, 0.0,
@@ -76,13 +88,13 @@ class GLFunc():
             0.5, -0.5, 0.5, 0.0, 1.0, 0.5, -0.5, -0.5, 1.0, 1.0, 0.5, 0.5, -0.5, 1.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.0,
             -0.5, -0.5, 0.5, 1.0, 1.0, 0.5, -0.5, 0.5, 0.0, 1.0, 0.5, -0.5, -0.5, 0.0, 0.0, -0.5, -0.5, -0.5, 1.0, 0.0,
             -0.5, 0.5, 0.5, 0.0, 1.0, 0.5, 0.5, 0.5, 1.0, 1.0, 0.5, 0.5, -0.5, 1.0, 0.0, -0.5, 0.5, -0.5, 0.0, 0.0,
-        ], dtype = np.float32))
+        ], dtype = np.float32), GL_STATIC_DRAW)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['cuboid_index'])
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array([
             3, 2, 0, 0, 2, 1, 5, 6, 4, 4, 6, 7,
             11, 10, 8, 8, 10, 9, 13, 14, 12, 12, 14, 15,
             19, 18, 16, 16, 18, 17, 21, 22, 20, 20, 22, 23
-        ], dtype = np.int16))
+        ], dtype = np.int16), GL_STATIC_DRAW)
 
         # Textures
         game.texture = 1

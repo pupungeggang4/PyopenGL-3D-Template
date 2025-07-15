@@ -11,3 +11,6 @@ from world import *
 from rgl import *
 from rhud import *
 from glfunc import *
+
+class RenderHUD():
+    pass

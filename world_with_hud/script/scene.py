@@ -1,4 +1,16 @@
-from script.module import *
+import os, sys, ctypes, json
+import numpy as np, pygame, glfw
+from OpenGL.GL import *
+
+from asset import *
+from ui import *
+from primitive import *
+from func import *
+from player import *
+from world import *
+from rgl import *
+from rhud import *
+from glfunc import *
 
 def loop(game):
     render(game)
@@ -18,17 +30,19 @@ def render(game):
     glUseProgram(game.program)
 
     # HUD rendering
+    glDisable(GL_DEPTH_TEST)
     glUniform1i(game.location['u_mode_v'], 0)
+    glUniform1i(game.location['u_mode_f'], 0)
+    glEnableVertexAttribArray(game.location['a_position'])
+    glEnableVertexAttribArray(game.location['a_texcoord'])
+    
+    glBindBuffer(GL_ARRAY_BUFFER, game.buffer['hud'])
+    glVertexAttribPointer(game.location['a_position'], 2, GL_FLOAT, False, 4 * 4, ctypes.c_void_p(0 * 4))
+    glVertexAttribPointer(game.location['a_texcoord'], 2, GL_FLOAT, False, 4 * 4, ctypes.c_void_p(2 * 4))
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['hud_index'])
+    surf_texture = pygame.image.tobytes(game.surface_hud, 'RGBA')
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1280, 720, 0, GL_RGBA, GL_UNSIGNED_BYTE, surf_texture)
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, ctypes.c_void_p(0))
 
     # 3D rendering.
-    glUniform1i(game.location['u_mode_v'], 1)
-    glUniform1i(game.location['u_mode_f'], 1)
-    glUniform3f(game.location['u_color'], 0.0, 0.0, 1.0)
-
-    glEnableVertexAttribArray(game.location['a_position'])
-
-    glBindVertexArray(game.vao)
-    glBindBuffer(GL_ARRAY_BUFFER, game.buffer['triangle'])
-    glVertexAttribPointer(game.location['a_position'], 3, GL_FLOAT, GL_FALSE, 3 * 4, ctypes.c_void_p(0))
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, game.buffer['triangle_index'])
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, ctypes.c_void_p(0))
+    game.world.render(game)

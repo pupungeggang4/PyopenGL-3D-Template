@@ -50,7 +50,8 @@ void main() {
             0.0, 0.0, -(2.0 * far * near) / (far - near), 0.0
         );
         vec4 pos = a_position;
-        pos = m_m_pos * m_m_size * pos;
+        pos = m_m_pos * pos;
+        pos = m_m_size * pos;
         pos = m_z_inv * pos;
         pos = m_c_pos * pos;
         pos = m_c_proj * pos;
