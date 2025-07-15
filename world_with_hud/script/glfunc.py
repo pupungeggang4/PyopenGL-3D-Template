@@ -44,7 +44,7 @@ class GLFunc():
         glGenVertexArrays(game.vao)
         glBindVertexArray(game.vao)
         game.buffer = {
-            'triangle': 1, 'triangle_index': 2
+            'triangle': 1, 'triangle_index': 2, 'hud': 3, 'hud_index': 4, 'cuboid': 5, 'cuboid': 6
         }
         glGenBuffers(1, game.buffer['triangle'])
         glGenBuffers(1, game.buffer['triangle_index'])
@@ -55,3 +55,10 @@ class GLFunc():
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, np.array([0, 1, 2], dtype = np.int16), GL_STATIC_DRAW)
 
         # Textures
+        game.texture = 1
+        glGenTextures(1, game.texture)
+        glBindTexture(GL_TEXTURE_2D, game.texture)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST)

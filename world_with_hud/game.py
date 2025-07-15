@@ -55,7 +55,7 @@ class Game():
         Font.neodgm_16 = pygame.font.Font('font/neodgm.ttf', 16)
         Image.test_image = pygame.image.load('image/test_image.png')
 
-        self.surface = pygame.surface.Surface([1280, 720], pygame.SRCALPHA)
+        self.surface_hud = pygame.surface.Surface([1280, 720], pygame.SRCALPHA)
         self.clock = pygame.time.Clock()
         self.fps = 60
 
