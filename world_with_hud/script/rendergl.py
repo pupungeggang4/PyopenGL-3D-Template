@@ -2,6 +2,10 @@ import os, sys, ctypes, json
 import numpy as np, pygame, glfw
 from OpenGL.GL import *
 
+'''
+Functions related to OpenGL rendering objects.
+'''
+
 class RenderGL():
     @staticmethod
     def render_cuboid3_color(game, camera, cuboid, color):

@@ -6,6 +6,7 @@ from script.asset import *
 from script.ui import *
 from script.primitive import *
 from script.func import *
+from script.save import *
 from script.player import *
 from script.world import *
 from script.rendergl import *
@@ -16,6 +17,11 @@ import script.scene as scene
 
 class Game():
     def __init__(self):
+        # Loading save data.
+        self.save_data = {}
+        read_save_data(self)
+        print(self.save_data)
+
         # Input variable.
         self.mouse_pressed = False
         self.key_binding = {} # Edit this.

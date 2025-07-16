@@ -2,6 +2,10 @@ import os, sys, ctypes, json
 import numpy as np, pygame, glfw
 from OpenGL.GL import *
 
+'''
+Initializing OpenGL on python.
+'''
+
 class GLFunc():
     @staticmethod
     def gl_init(game):
