@@ -23,8 +23,9 @@ class World():
         self.camera = Camera3()
 
     def render(self, game):
-        for cuboid in self.thing:
-            RenderGL.render_cuboid3_color(game, self.camera, cuboid, [0.0, 1.0, 1.0])
+        RenderGL.render_cuboid3_color(game, self.camera, self.thing[0], [0.0, 1.0, 1.0])
+        RenderGL.render_cuboid3_texture(game, self.camera, self.thing[1], Texture.test_texture)
+        
 
 # Camera in world.
 class Camera3():

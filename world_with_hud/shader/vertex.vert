@@ -45,13 +45,12 @@ void main() {
         float far = u_c_proj[3];
         mat4 m_c_proj = mat4(
             1.0 / (asp * tan(fov / 2.0)), 0.0, 0.0, 0.0,
-            0.0, tan(fov / 2.0), 0.0, 0.0,
+            0.0, 1 / tan(fov / 2.0), 0.0, 0.0,
             0.0, 0.0, -(far + near) / (far - near), -1.0,
             0.0, 0.0, -(2.0 * far * near) / (far - near), 0.0
         );
         vec4 pos = a_position;
-        pos = m_m_pos * pos;
-        pos = m_m_size * pos;
+        pos = m_m_pos * m_m_size * pos;
         pos = m_z_inv * pos;
         pos = m_c_pos * pos;
         pos = m_c_proj * pos;

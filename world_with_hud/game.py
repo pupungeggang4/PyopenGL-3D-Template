@@ -67,7 +67,9 @@ class Game():
         Font.neodgm_32 = pygame.font.Font('font/neodgm.ttf', 32)
         Font.neodgm_16 = pygame.font.Font('font/neodgm.ttf', 16)
         Image.test_image = pygame.image.load('image/test_image.png')
-        Texture.test_texture = pygame.image.tobytes(pygame.image.load('image/test_image.png'), 'RGBA')
+        Texture.test_texture = {
+            'width': 40, 'height': 40, 'data': pygame.image.tobytes(pygame.image.load('image/test_image.png'), 'RGBA')
+        }
 
         self.surface_hud = pygame.surface.Surface([1280, 720], pygame.SRCALPHA)
         self.clock = pygame.time.Clock()

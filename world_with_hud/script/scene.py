@@ -41,4 +41,6 @@ def render(game):
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, ctypes.c_void_p(0))
 
     # 3D rendering.
+    glEnable(GL_DEPTH_TEST)
+    glUniform1i(game.location['u_mode_v'], 1)
     game.world.render(game)

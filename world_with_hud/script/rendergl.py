@@ -20,12 +20,12 @@ class RenderGL():
         glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, ctypes.c_void_p(0))
 
     @staticmethod
-    def render_cuboid3_texture(game, camera, cuboid, tex_image):
+    def render_cuboid3_texture(game, camera, cuboid, texture):
         glEnableVertexAttribArray(game.location['a_position'])
         glEnableVertexAttribArray(game.location['a_texcoord'])
 
-        glUniform1i(game.location['u_mode_f'], 1)
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1280, 720, 0, GL_RGBA, GL_UNSIGNED_BYTE, tex_image)
+        glUniform1i(game.location['u_mode_f'], 2)
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture['width'], texture['height'], 0, GL_RGBA, GL_UNSIGNED_BYTE, texture['data'])
         glUniform3f(game.location['u_m_pos'], cuboid.pos.x, cuboid.pos.y, cuboid.pos.z)
         glUniform3f(game.location['u_m_size'], cuboid.size.x, cuboid.size.y, cuboid.size.z)
         glUniform3f(game.location['u_c_pos'], camera.pos.x, camera.pos.y, camera.pos.z)
