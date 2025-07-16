@@ -2,17 +2,17 @@ import os, sys, ctypes, json
 import numpy as np, pygame, glfw
 from OpenGL.GL import *
 
-from asset import *
-from ui import *
-from primitive import *
-from func import *
-from player import *
-from world import *
-from rgl import *
-from rhud import *
-from glfunc import *
+from script.asset import *
+from script.ui import *
+from script.primitive import *
+from script.func import *
+from script.player import *
+from script.world import *
+from script.rendergl import *
+from script.renderhud import *
+from script.glfunc import *
 
-import scene as scene
+import script.scene as scene
 
 class Game():
     def __init__(self):
@@ -67,6 +67,7 @@ class Game():
         Font.neodgm_32 = pygame.font.Font('font/neodgm.ttf', 32)
         Font.neodgm_16 = pygame.font.Font('font/neodgm.ttf', 16)
         Image.test_image = pygame.image.load('image/test_image.png')
+        Texture.test_texture = pygame.image.tobytes(pygame.image.load('image/test_image.png'), 'RGBA')
 
         self.surface_hud = pygame.surface.Surface([1280, 720], pygame.SRCALPHA)
         self.clock = pygame.time.Clock()
