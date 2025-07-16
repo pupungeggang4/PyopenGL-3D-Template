@@ -9,11 +9,14 @@ uniform vec3 u_c_rot;
 uniform vec4 u_c_proj;
 in vec4 a_position;
 in vec2 a_texcoord;
+in vec3 a_normal;
 out vec2 p_texcoord;
+out vec3 p_normal;
 
 void main() {
     if (u_mode_v == 0) {
         gl_Position = a_position;
+        p_normal = vec3(-1.0, 0.0, 0.0);
     } else {
         mat4 m_m_pos = mat4(
             1.0, 0.0, 0.0, 0.0,
@@ -26,6 +29,15 @@ void main() {
             0.0, u_m_size.y, 0.0, 0.0,
             0.0, 0.0, u_m_size.z, 0.0,
             0.0, 0.0, 0.0, 1.0
+        );
+        mat4 m_m_rot_x = mat4(
+
+        );
+        mat4 m_m_rot_y = mat4(
+
+        );
+        mat4 m_m_rot_z = mat4(
+
         );
         mat4 m_c_pos = mat4(
             1.0, 0.0, 0.0, 0.0,
@@ -55,6 +67,8 @@ void main() {
         pos = m_c_pos * pos;
         pos = m_c_proj * pos;
         gl_Position = pos;
+        vec4 normal = vec4(a_normal, 1.0);
+        p_normal = normal;
     }
     p_texcoord = a_texcoord;
 }
