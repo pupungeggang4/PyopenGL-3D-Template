@@ -19,14 +19,27 @@ class PlayerWorld():
 # World.
 class World():
     def __init__(self):
-        self.thing = [Cuboid3(0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0, 0, 0), Cuboid3(-0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0, 0, 0)]
+        self.thing = [
+            Cuboid3(0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0, 0, 0),
+            Cuboid3(-0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0, 0, 0),
+            Cuboid3(-0.2, -0.2, 0.2, 0.2, 0.2, 0.2, 0, 0, 0),
+            Cuboid3(0.2, -0.2, 0.2, 0.2, 0.2, 0.2, 0, 0, 0),
+        ]
         self.camera = Camera3()
+        self.light = Vector3(0.0, 0.0, 1.0)
+
+    def handle_tick(self, game):
+        self.thing[2].rot.x += 0.5 / game.fps
+        self.thing[2].rot.y += 0.5 / game.fps
+        self.thing[3].rot.y += 0.5 / game.fps
+        self.thing[3].rot.z += 0.5 / game.fps
 
     def render(self, game):
-        RenderGL.render_cuboid3_color(game, self.camera, self.thing[0], [0.0, 1.0, 1.0])
-        RenderGL.render_cuboid3_texture(game, self.camera, self.thing[1], Texture.test_texture)
+        RenderGL.render_cuboid3(game, self.camera, self.light, self.thing[0], 1, [0.0, 1.0, 1.0], None)
+        RenderGL.render_cuboid3(game, self.camera, self.light, self.thing[1], 2, [0.0, 1.0, 1.0], Texture.test_texture)
+        RenderGL.render_cuboid3(game, self.camera, self.light, self.thing[2], 3, [0.0, 1.0, 1.0], None)
+        RenderGL.render_cuboid3(game, self.camera, self.light, self.thing[3], 4, [0.0, 1.0, 1.0], Texture.test_texture)
         
-
 # Camera in world.
 class Camera3():
     def __init__(self):

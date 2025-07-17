@@ -1,3 +1,7 @@
+import os, sys, ctypes, json
+import numpy as np, pygame, glfw
+from OpenGL.GL import *
+
 from script.asset import *
 from script.ui import *
 
@@ -9,6 +13,7 @@ from script.rendergl import *
 from script.renderhud import *
 
 def loop(game):
+    game.world.handle_tick(game)
     render(game)
 
 def render(game):
